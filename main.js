@@ -43,7 +43,6 @@ const b34=document.getElementById("b34")
 const b35=document.getElementById("b35")
 const b36=document.getElementById("b36")
 
-const value1 =1
 
 function closemenu(){
   document.querySelectorAll(".game-rules").forEach(function(el){
@@ -56,8 +55,36 @@ function closemenu(){
   });
 };
 
+var startb = 0
+var plnotlost = 1
+
+function startgame(){
+  document.querySelectorAll(".game-rules").forEach(function(el){
+    if (el.style.display !="none"){
+      el.style.display = "none"; // hide the element
+    }
+  })
+ plnotlost=0
+}
+
+if (startb==1){
+
+  while (plnotlost = 0){
+    var level = 1
+    var brand=Math.floor(Math.random()*36)
+    console.log(brand)
+
+    // cria uma variavel para guardar a string
+    var newbutton = ("b"+(brand.toString()));
+
+  //for loop para guardar os butões randomizados
+
+  for (i=0; i<1; i++){
+    var array=[i] = brand
+  }
+}
+
+  
+}
 
 
-
-var brand=Math.floor(Math.random()*10)
-console.log(brand)
