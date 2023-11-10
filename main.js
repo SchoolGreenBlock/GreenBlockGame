@@ -43,20 +43,19 @@ const b34=document.getElementById("b34")
 const b35=document.getElementById("b35")
 const b36=document.getElementById("b36")
 
-
-const gamemenu=document.querySelectorAll(".game-rules")
-
 const value1 =1
 
-const elements = document.getElementsByClassName("CloseBmenu");
-
-
 function closemenu(){
-  for (var i = 0; i < elements.length; i++) {
-    elements[i].style.opacity = 0.7;
-  }
-  console.log("works")
-  };
+  document.querySelectorAll(".game-rules").forEach(function(el){
+    if (el.style.display !="none"){
+      el.style.display = "none"; // hide the element
+    }else{
+      el.style.display = "block";
+    }
+    
+  });
+};
+
 
 
 
