@@ -55,36 +55,97 @@ function closemenu(){
   });
 };
 
-var startb = 0
-var plnotlost = 1
+let plnotlost = 1
+const arrayButtons=[b1,b2,b3,b4,b5,b6,b7,b8,b9,b10,b11,b12,b13,b14,b15,b16,b17,b18,b19,b20,b21,b22, b23, b24, b25, b26, b27, b28, b29, b30, b31, b32, b33, b34, b35, b36];
+let arraySorted=[]
+let count = 1
+var v1=0
+var level = 1
+
+let clickedButton;
+
+function buttonClicked() {
+  return new Promise(resolve => {
+      arrayButtons.forEach(button => {
+          button.addEventListener('click', function() {
+              clickedButton = this;
+              resolve(this);
+          });
+      });
+  });
+}
+
+
+const Wait = (delay) => new Promise((resolve) => setTimeout(resolve, delay*1000))
 
 function startgame(){
-  document.querySelectorAll(".game-rules").forEach(function(el){
+
+  document.querySelectorAll(".game-rules-container").forEach(function(el){
     if (el.style.display !="none"){
       el.style.display = "none"; // hide the element
     }
+    
   })
- plnotlost=0
 }
 
-if (startb==1){
+document.querySelector(".StartB").addEventListener("click", function() {
+    plnotlost = 0; // change the value of the variable
+    console.log("Startbutton foi clicked");
+    loop()
+});
+        
+async function loop(){
+    while(plnotlost==0){
+      if (level==count){
+        randomB=arrayButtons[Math.floor(Math.random()*arrayButtons.length)]
+        console.log(randomB)
 
-  while (plnotlost = 0){
-    var level = 1
-    var brand=Math.floor(Math.random()*36)
-    console.log(brand)
+    //for loop para guardar os butões randomizados
 
-    // cria uma variavel para guardar a string
-    var newbutton = ("b"+(brand.toString()));
+        for (i=v1; i<count; i++){
+            arraySorted[i]=randomB
+            console.log(arraySorted[i])
+        }
+        
+    }
 
-  //for loop para guardar os butões randomizados
+    //for loop para mudar cor dos butões
+    if (arraySorted.length>0){
+        for(i=0; i<arraySorted.length; i++){
+          arraySorted[i].style.background = "Black"
+          await Wait(1);
+          arraySorted[i].style.background = "Green"
+          await Wait(1);
+        }
 
-  for (i=0; i<1; i++){
-    var array=[i] = brand
-  }
+        for(i=0; i<arraySorted.length; i++){
+            
+
+            while(clickedButton==null){
+              
+              await Wait(buttonClicked())
+            }
+            console.log('Button clicked:', clickedButton);
+
+            if (clickedButton != arraySorted[i]){
+                  document.querySelectorAll("button").forEach(function(bg){
+                    bg.style.background="red"
+                  })
+                  plnotlost=1
+                  console.log(level)
+                  break
+            }
+            clickedButton=null
+
+          }
+        
+      }
+    level+=1
+    count+=1
+    v1=v1+1
+
+    //show level
+    showlevel
+  } 
 }
-
-  
-}
-
-
+       
